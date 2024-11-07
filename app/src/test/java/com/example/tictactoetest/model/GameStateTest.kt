@@ -28,4 +28,16 @@ class GameStateTest {
         assertEquals(Player.X, game.currentPlayer)
     }
 
+    @Test
+    fun `should detect a winning row`() {
+        val game = GameState()
+        game.playTurn(0) // X joue
+        game.playTurn(3) // O joue
+        game.playTurn(1) // X joue
+        game.playTurn(4) // O joue
+        game.playTurn(2) // X gagne
+        assertEquals(Player.X, game.checkWinner())
+
+    }
+
 }
