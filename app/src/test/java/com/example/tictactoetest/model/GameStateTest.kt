@@ -16,4 +16,16 @@ class GameStateTest {
         assertEquals(Player.X, game.currentPlayer)
 
     }
+
+    @Test
+    fun `players should alternate turns`() {
+        val game = GameState()
+
+        game.playTurn(0)
+        assertEquals(Player.O, game.currentPlayer)
+
+        game.playTurn(1)
+        assertEquals(Player.X, game.currentPlayer)
+    }
+
 }
