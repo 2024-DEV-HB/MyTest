@@ -33,5 +33,10 @@ class GameState {
         return board.all { it != null } && checkWinner() == null
     }
 
+    fun resetGame() {
+        board.fill(null)
+        currentPlayer = Player.X
+    }
+
 }
 
