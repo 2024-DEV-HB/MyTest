@@ -3,6 +3,7 @@ package com.example.tictactoetest.model
 import com.example.tictactoetest.GameState
 import com.example.tictactoetest.Player
 import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertNull
 import junit.framework.TestCase.assertTrue
 import org.junit.Test
@@ -57,6 +58,17 @@ class GameStateTest {
 
 
         assertNull(game.checkWinner())
+    }
+
+    @Test
+    fun `should not allow playing on an occupied position`() {
+        val game = GameState()
+
+        assertTrue(game.playTurn(0)) // Joueur X joue en position 0
+
+        assertFalse(game.playTurn(0)) // Joueur O joue aussi en position 0
+
+        assertEquals(Player.O, game.currentPlayer) // Le tour reste a O car le coup n'est pas joué
     }
 
 }
