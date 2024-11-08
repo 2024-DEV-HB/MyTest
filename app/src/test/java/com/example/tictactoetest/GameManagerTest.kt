@@ -1,17 +1,15 @@
-package com.example.tictactoetest.model
+package com.example.tictactoetest
 
-import com.example.tictactoetest.GameState
-import com.example.tictactoetest.Player
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertNull
 import junit.framework.TestCase.assertTrue
 import org.junit.Test
 
-class GameStateTest {
+class GameManagerTest {
 
     @Test
-    fun `boad should be empty at start and player X starts`() {
+    fun `board should be empty at start and player X starts`() {
         val game = GameState()
 
         assertTrue(game.board.all { it == null })
@@ -58,6 +56,7 @@ class GameStateTest {
 
 
         assertNull(game.checkWinner())
+        assertTrue(game.checkDraw())
     }
 
     @Test
