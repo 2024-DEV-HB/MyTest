@@ -1,5 +1,6 @@
 package com.example.tictactoetest
 
+import com.example.tictactoetest.model.Player
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertNull
@@ -68,6 +69,18 @@ class GameManagerTest {
         assertFalse(game.playTurn(0)) // Joueur O joue aussi en position 0
 
         assertEquals(Player.O, game.currentPlayer) // Le tour reste a O car le coup n'est pas joué
+    }
+
+    @Test
+    fun `should reset the game board and current player`() {
+        val game = GameState()
+
+        game.playTurn(0)
+        game.playTurn(1)
+        game.resetGame()
+
+        assertTrue(game.board.all {  it == null })
+        assertEquals(Player.X, game.currentPlayer)
     }
 
 }
