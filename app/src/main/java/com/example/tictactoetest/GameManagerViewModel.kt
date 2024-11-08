@@ -34,4 +34,9 @@ class GameManagerViewModel : ViewModel() {
         }
     }
 
+    fun resetGame() {
+        gameState.resetGame()
+        _board.value = gameState.board
+        _currentPlayer.value = gameState.currentPlayer
+    }
 }
