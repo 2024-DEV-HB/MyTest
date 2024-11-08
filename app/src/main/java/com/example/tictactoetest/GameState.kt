@@ -26,6 +26,11 @@ class GameState {
         }
         return null
     }
+
+    fun checkDraw(): Boolean {
+        return board.all { it != null } && checkWinner() == null
+    }
+
 }
 
 enum class Player {
