@@ -1,5 +1,7 @@
 package com.example.tictactoetest
 
+import com.example.tictactoetest.model.Player
+
 class GameState {
 
     val board = MutableList<Player?>(9) { null }
@@ -33,7 +35,3 @@ class GameState {
 
 }
 
-enum class Player {
-    X,
-    O
-}

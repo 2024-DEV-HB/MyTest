@@ -3,6 +3,7 @@ package com.example.tictactoetest
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.tictactoetest.model.Player
 
 class GameManagerViewModel : ViewModel() {
     private val gameState = GameState()
