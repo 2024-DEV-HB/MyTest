@@ -11,7 +11,7 @@ class GameManagerTest {
 
     @Test
     fun `board should be empty at start and player X starts`() {
-        val game = GameState()
+        val game = GameManager()
 
         assertTrue(game.board.all { it == null })
         assertEquals(Player.X, game.currentPlayer)
@@ -20,7 +20,7 @@ class GameManagerTest {
 
     @Test
     fun `players should alternate turns`() {
-        val game = GameState()
+        val game = GameManager()
 
         game.playTurn(0)
         assertEquals(Player.O, game.currentPlayer)
@@ -31,7 +31,7 @@ class GameManagerTest {
 
     @Test
     fun `should detect a winning row`() {
-        val game = GameState()
+        val game = GameManager()
         game.playTurn(0) // X joue
         game.playTurn(3) // O joue
         game.playTurn(1) // X joue
@@ -43,7 +43,7 @@ class GameManagerTest {
 
     @Test
     fun `should return draw when all spaces are filled and no winner`() {
-        val game = GameState()
+        val game = GameManager()
 
         game.playTurn(0)
         game.playTurn(4)
@@ -62,7 +62,7 @@ class GameManagerTest {
 
     @Test
     fun `should not allow playing on an occupied position`() {
-        val game = GameState()
+        val game = GameManager()
 
         assertTrue(game.playTurn(0)) // Joueur X joue en position 0
 
@@ -73,7 +73,7 @@ class GameManagerTest {
 
     @Test
     fun `should reset the game board and current player`() {
-        val game = GameState()
+        val game = GameManager()
 
         game.playTurn(0)
         game.playTurn(1)

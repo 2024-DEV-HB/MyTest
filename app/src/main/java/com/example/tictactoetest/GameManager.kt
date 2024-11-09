@@ -2,7 +2,7 @@ package com.example.tictactoetest
 
 import com.example.tictactoetest.model.Player
 
-class GameState {
+class GameManager {
 
     val board = MutableList<Player?>(9) { null }
     var currentPlayer = Player.X
