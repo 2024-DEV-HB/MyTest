@@ -10,13 +10,13 @@ import org.junit.Test
 
 
 
-class GameManagerViewModelTest {
+class GameViewModelTest {
 
-    private lateinit var viewModel: GameManagerViewModel
+    private lateinit var viewModel: GameViewModel
 
     @Before
     fun setup() {
-        viewModel = GameManagerViewModel()
+        viewModel = GameViewModel()
     }
 
     @Test

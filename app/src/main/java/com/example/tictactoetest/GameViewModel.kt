@@ -13,7 +13,7 @@ sealed interface TicTacToeState {
     data object Draw : TicTacToeState
 }
 
-class GameManagerViewModel : ViewModel() {
+class GameViewModel : ViewModel() {
 
     private val gameState = GameManager()
 
