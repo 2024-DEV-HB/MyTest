@@ -1,11 +1,9 @@
 package com.example.tictactoetest
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.tictactoetest.model.Player
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 
 sealed interface TicTacToeState {
     data class InProgress(val board: List<Player?>, val currentPlayer: Player) : TicTacToeState
@@ -17,7 +15,12 @@ class GameViewModel : ViewModel() {
 
     private val gameState = GameManager()
 
-    private val _state = MutableStateFlow<TicTacToeState>(TicTacToeState.InProgress(gameState.board, gameState.currentPlayer))
+    private val _state = MutableStateFlow<TicTacToeState>(
+        TicTacToeState.InProgress(
+            gameState.board,
+            gameState.currentPlayer
+        )
+    )
     val state: StateFlow<TicTacToeState> = _state
 
     init {
@@ -33,21 +36,14 @@ class GameViewModel : ViewModel() {
     }
 
     fun playTurn(position: Int) {
-
-        viewModelScope.launch {
-            try {
-                if (gameState.playTurn(position)) {
-                    _state.value = when {
-                        gameState.checkWinner() != null -> TicTacToeState.Win(gameState.checkWinner()!!)
-                        gameState.checkDraw() -> TicTacToeState.Draw
-                        else -> TicTacToeState.InProgress(
-                            board = gameState.board,
-                            currentPlayer = gameState.currentPlayer
-                        )
-                    }
-                }
-            } catch (e: Exception) {
-                e.printStackTrace()
+        if (gameState.playTurn(position)) {
+            _state.value = when {
+                gameState.checkWinner() != null -> TicTacToeState.Win(gameState.checkWinner()!!)
+                gameState.checkDraw() -> TicTacToeState.Draw
+                else -> TicTacToeState.InProgress(
+                    board = gameState.board,
+                    currentPlayer = gameState.currentPlayer
+                )
             }
         }
     }

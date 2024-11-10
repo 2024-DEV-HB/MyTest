@@ -30,12 +30,12 @@ class GameManager {
     }
 
     fun checkDraw(): Boolean {
-        return board.all { it != null } && checkWinner() == null
+        return board.all { it != null } && checkWinner() == null // verify if the board is full and if there is no winner
     }
 
     fun resetGame() {
-        board.fill(null)
-        currentPlayer = Player.X
+        board.fill(null) // empty the board
+        currentPlayer = Player.X // X is the first player
     }
 
 }
