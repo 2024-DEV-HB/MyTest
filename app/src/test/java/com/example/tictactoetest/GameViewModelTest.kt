@@ -25,7 +25,7 @@ class GameViewModelTest {
         withTimeout(1000L) {
             val inProgressState = viewModel.state.first() as TicTacToeState.InProgress
             assertEquals(9, inProgressState.board.size)
-            inProgressState.board.forEachIndexed { index, value -> assertEquals(null, value) }
+            inProgressState.board.forEachIndexed { _, value -> assertEquals(null, value) }
             assertEquals(Player.X, inProgressState.currentPlayer)
 
         }

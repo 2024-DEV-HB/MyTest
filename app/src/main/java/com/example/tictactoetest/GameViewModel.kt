@@ -35,19 +35,15 @@ class GameViewModel : ViewModel() {
     fun playTurn(position: Int) {
 
         viewModelScope.launch {
-            try {
-                if (gameState.playTurn(position)) {
-                    _state.value = when {
-                        gameState.checkWinner() != null -> TicTacToeState.Win(gameState.checkWinner()!!)
-                        gameState.checkDraw() -> TicTacToeState.Draw
-                        else -> TicTacToeState.InProgress(
+            if (gameState.playTurn(position)) {
+                _state.value = when {
+                    gameState.checkWinner() != null -> TicTacToeState.Win(gameState.checkWinner()!!)
+                    gameState.checkDraw() -> TicTacToeState.Draw
+                    else -> TicTacToeState.InProgress(
                             board = gameState.board,
                             currentPlayer = gameState.currentPlayer
-                        )
-                    }
+                    )
                 }
-            } catch (e: Exception) {
-                e.printStackTrace()
             }
         }
     }

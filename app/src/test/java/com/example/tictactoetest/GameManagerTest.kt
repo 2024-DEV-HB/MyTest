@@ -32,11 +32,11 @@ class GameManagerTest {
     @Test
     fun `should detect a winning row`() {
         val game = GameManager()
-        game.playTurn(0) // X joue
-        game.playTurn(3) // O joue
-        game.playTurn(1) // X joue
-        game.playTurn(4) // O joue
-        game.playTurn(2) // X gagne
+        game.playTurn(0) // X play
+        game.playTurn(3) // O play
+        game.playTurn(1) // X play
+        game.playTurn(4) // O play
+        game.playTurn(2) // X win
         assertEquals(Player.X, game.checkWinner())
 
     }
@@ -45,15 +45,15 @@ class GameManagerTest {
     fun `should return draw when all spaces are filled and no winner`() {
         val game = GameManager()
 
-        game.playTurn(0)
-        game.playTurn(4)
-        game.playTurn(8)
-        game.playTurn(1)
-        game.playTurn(7)
-        game.playTurn(6)
-        game.playTurn(2)
-        game.playTurn(5)
-        game.playTurn(3)
+        game.playTurn(0) // X play
+        game.playTurn(4) // O play
+        game.playTurn(8) // X play
+        game.playTurn(1) // O play
+        game.playTurn(7) // X play
+        game.playTurn(6) // O play
+        game.playTurn(2) // X play
+        game.playTurn(5) // O play
+        game.playTurn(3) // X play and it's a draw
 
 
         assertNull(game.checkWinner())
@@ -64,20 +64,20 @@ class GameManagerTest {
     fun `should not allow playing on an occupied position`() {
         val game = GameManager()
 
-        assertTrue(game.playTurn(0)) // Joueur X joue en position 0
+        assertTrue(game.playTurn(0)) // Player X plays in pos 0
 
-        assertFalse(game.playTurn(0)) // Joueur O joue aussi en position 0
+        assertFalse(game.playTurn(0)) // Payer O also plays in po 0
 
-        assertEquals(Player.O, game.currentPlayer) // Le tour reste a O car le coup n'est pas joué
+        assertEquals(Player.O, game.currentPlayer) // It's O's turn because he didn't take a free position
     }
 
     @Test
     fun `should reset the game board and current player`() {
         val game = GameManager()
 
-        game.playTurn(0)
-        game.playTurn(1)
-        game.resetGame()
+        game.playTurn(0) // X play in position 0
+        game.playTurn(1) // O play in position 1
+        game.resetGame() // the board is empty
 
         assertTrue(game.board.all {  it == null })
         assertEquals(Player.X, game.currentPlayer)
