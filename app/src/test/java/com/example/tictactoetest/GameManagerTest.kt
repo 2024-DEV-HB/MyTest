@@ -30,11 +30,35 @@ class GameManagerTest {
     }
 
     @Test
-    fun `should detect a winning row`() {
+    fun `playTurn should return false is position is out of bounds or occupied`() {
         val game = GameManager()
+
+        val resultNegative = game.playTurn(-1)
+        assertFalse(resultNegative)
+
+        val resultOutOfBound = game.playTurn(9)
+        assertFalse(resultOutOfBound)
+
+        game.playTurn(0)
+        assertEquals(Player.O, game.currentPlayer)
+
+        val resultOccupied = game.playTurn(0)
+        assertFalse(resultOccupied)
+
+    }
+
+    @Test
+    fun `should detect a winning row and return null when there is no winner`() {
+        val game = GameManager()
+
+        assertNull(game.checkWinner())
+
         game.playTurn(0) // X play
         game.playTurn(3) // O play
         game.playTurn(1) // X play
+
+        assertNull(game.checkWinner())
+
         game.playTurn(4) // O play
         game.playTurn(2) // X win
         assertEquals(Player.X, game.checkWinner())
@@ -58,6 +82,27 @@ class GameManagerTest {
 
         assertNull(game.checkWinner())
         assertTrue(game.checkDraw())
+    }
+
+    @Test
+    fun `should return false for draw when board is not full and when there is a winner`() {
+        val game = GameManager()
+
+        game.playTurn(0) // X play
+        game.playTurn(4) // O play
+        game.playTurn(8) // X play
+        game.playTurn(1) // O play
+
+        assertFalse(game.checkDraw())
+
+        game.playTurn(7) // X play
+        game.playTurn(6) // O play
+        game.playTurn(2) // X play
+        game.playTurn(3) // O play
+        game.playTurn(5) // X play and win
+
+        assertEquals(Player.X, game.checkWinner())
+        assertFalse(game.checkDraw())
     }
 
     @Test
