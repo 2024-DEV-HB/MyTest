@@ -4,7 +4,7 @@ import com.example.tictactoetest.model.Player
 
 class GameManager {
 
-    val board = MutableList<Player?>(9) { null }
+    var board = MutableList<Player?>(9) { null }
     var currentPlayer = Player.X
 
     fun playTurn(position: Int) : Boolean {
@@ -34,7 +34,7 @@ class GameManager {
     }
 
     fun resetGame() {
-        board.fill(null) // empty the board
+        board = MutableList<Player?>(9) {null} // empty the board
         currentPlayer = Player.X // X is the first player
     }
 
