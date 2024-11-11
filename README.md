@@ -1,6 +1,6 @@
 # TIC-TAC-TOE Game
 
-This project allows two player to play this classic game on a 3x3 board, alternating between X and O players.
+This project allows two players to play this classic game on a 3x3 board, alternating between X and O players.
 The player who succeeds to place three of their marks in a horizontal, vertical or diagonal wins the game.
 
 ---
@@ -23,7 +23,7 @@ The player who succeeds to place three of their marks in a horizontal, vertical 
 
 ## Architecture
 
-The project follow the **MVVM** architectural pattern, which helps separate view, data and business logic.
+The project follows the **MVVM** architectural pattern, which helps separate view, data and business logic.
 The **View** is implemented using **Jetpack Compose**, and the application uses flow for state management to observe the current game state and update the UI reactively.
 
 ---
